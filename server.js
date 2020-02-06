@@ -25,9 +25,9 @@ app.get("/scrape", function(req, res) {
 
         var $ = cheerio.load(response.data);
 
-        $("article h3").each(function(i, element) {
+        var result = {};
 
-            var result = {};
+        $("article h3").each(function(i, element) {
 
             result.title = $(this)
             .children("a")
@@ -45,7 +45,8 @@ app.get("/scrape", function(req, res) {
             });
 
         });
-        res.send("Scrapyquanchy Complete");
+        // res.send("Scrapyquanchy Complete");
+        res.json(result)
     });
 });
 
